@@ -3,41 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Kit Pop Quiz </title>
+    <title>JavaScript Kit Pop Quiz</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Courier+Prime&display=swap" rel="stylesheet">
 
     <style>
-        /* General Styles for Dark Mode */
+        /* General Dark Mode Styles */
         body {
             margin: 0;
             padding: 0;
-            background-color: #121212; /* Dark background */
+            background-color: #121212;
             font-family: 'Poppins', sans-serif;
             color: #e0e0e0;
+        }
+
+        /* Container for the quiz */
+        .quiz-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
-        /* Quiz container styling */
-        .quiz-container {
-            background-color: #1e1e1e; /* Darker card */
-            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
-            border-radius: 16px;
+        table {
+            width: 80%;
             max-width: 600px;
-            width: 100%;
-            padding: 30px;
-            text-align: center;
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            margin: auto;
         }
 
         caption {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 600;
+            margin-bottom: 15px;
             color: #ffffff;
-            margin-bottom: 20px;
         }
 
         textarea {
@@ -50,51 +53,52 @@
             color: #f5f5f5;
             font-family: 'Courier Prime', monospace;
             resize: none;
+            margin-top: 10px;
         }
 
         input[type="text"] {
-            width: 80%;
+            width: 100%;
             padding: 10px;
-            border-radius: 8px;
             border: 1px solid #333;
+            border-radius: 8px;
             background-color: #212121;
             color: #e0e0e0;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
         select {
             padding: 10px;
-            border-radius: 8px;
             border: 1px solid #333;
+            border-radius: 8px;
             background-color: #212121;
             color: #e0e0e0;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
+        /* Interactive button styles */
         input[type="button"] {
-            background-color: #4caf50;
+            background: linear-gradient(45deg, #ff6b6b, #f06595);
             color: white;
             border: none;
             padding: 12px 24px;
             margin: 15px 5px;
             border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
             font-weight: 600;
+            transition: background 0.4s, transform 0.2s;
         }
 
         input[type="button"]:hover {
-            background-color: #388e3c;
-        }
-
-        small {
-            display: block;
-            color: #aaa;
-            margin-top: 10px;
+            background: linear-gradient(45deg, #63e6be, #38d9a9);
+            transform: scale(1.05);
         }
 
         input[type="checkbox"] {
             margin-left: 5px;
+        }
+
+        small {
+            color: #bbb;
         }
 
         a {
@@ -107,76 +111,66 @@
             text-decoration: underline;
         }
 
-        footer {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #888;
-        }
-
-        .center-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        p {
+            margin: 0;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
     <div class="quiz-container">
-        <form method="POST" name="instantquiz">
-            <table border="0" width="100%" cellspacing="0" cellpadding="0">
-                <caption>JavaScript Kit Pop Quiz</caption>
+        <table border="0" cellspacing="0" cellpadding="0">
+            <caption><strong>JavaScript Kit Pop Quiz</strong></caption>
+            
+            <tr>
+                <td>
+                    <textarea name="thequestion" wrap="virtual" readonly></textarea>
+                </td>
+            </tr>
 
-                <tr>
-                    <td class="center-content">
-                        <textarea name="thequestion" cols="69" wrap="virtual" readonly></textarea>
-                    </td>
-                </tr>
+            <tr align="center">
+                <td>
+                    <p><strong>Solution:</strong></p>
+                    <input type="text" name="thesolution" readonly>
+                </td>
+            </tr>
 
-                <tr>
-                    <td class="center-content">
-                        <p><strong>Solution:</strong></p>
-                        <input type="text" name="thesolution" size="35" readonly>
-                    </td>
-                </tr>
+            <tr align="center">
+                <td>
+                    <p><strong>Your response:</strong></p>
+                    <select name="theresponse" onChange="responses()">
+                        <option value="-----">----</option>
+                        <option value="a">a</option>
+                        <option value="b">b</option>
+                        <option value="c">c</option>
+                        <option value="d">d</option>
+                    </select>
+                </td>
+            </tr>
 
-                <tr>
-                    <td class="center-content">
-                        <p><strong>Your response:</strong></p>
-                        <select name="theresponse" size="1" onChange="responses()">
-                            <option value="-----">----</option>
-                            <option value="a">a</option>
-                            <option value="b">b</option>
-                            <option value="c">c</option>
-                            <option value="d">d</option>
-                        </select>
-                    </td>
-                </tr>
+            <tr align="center">
+                <td>
+                    <input type="button" value="&lt;&lt;Back" onClick="if (whichone > 1) { whichone--; generatequestions(); }">
+                    <input type="button" value="Next&gt;&gt;" onClick="if (whichone <= total) { whichone++; generatequestions(); }">
+                </td>
+            </tr>
 
-                <tr>
-                    <td class="center-content">
-                        <input type="button" value="&lt;&lt; Back" name="B1"
-                            onClick="if (whichone > 1) { whichone--; generatequestions(); }">
-                        <input type="button" value="Next &gt;&gt;" name="B2"
-                            onClick="if (whichone <= total) { whichone++; generatequestions(); }">
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="center-content">
-                        <small>
-                            <a href="#" onClick="whichone = 1; generatequestions(); return false">Start Over</a>
-                            <input type="checkbox" name="cmode" value="ON">
-                            <label>Cheat Mode</label>
-                        </small>
-                    </td>
-                </tr>
-            </table>
-        </form>
-
-        <footer>
-            <p>This free quiz script provided by <a href="http://javascriptkit.com">JavaScript Kit</a></p>
-        </footer>
+            <tr align="center">
+                <td>
+                    <small>
+                        <a href="#" onClick="whichone = 1; generatequestions(); return false">Start Over</a>
+                        <input type="checkbox" name="cmode" value="ON"> Cheat Mode
+                    </small>
+                </td>
+            </tr>
+            
+            <tr align="center">
+                <td>
+                    <p><small>This free quiz script provided by <a href="http://javascriptkit.com">JavaScript Kit</a></small></p>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <script src="popquiz.js"></script>
