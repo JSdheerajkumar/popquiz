@@ -16,24 +16,20 @@
             background-color: #121212;
             font-family: 'Poppins', sans-serif;
             color: #e0e0e0;
-        }
-
-        /* Container for the quiz */
-        .quiz-container {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
         }
 
-        table {
+        /* Quiz container */
+        .quiz-container {
             width: 80%;
             max-width: 600px;
             background-color: #1e1e1e;
             border-radius: 12px;
             box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
             padding: 20px;
-            margin: auto;
         }
 
         caption {
@@ -41,6 +37,7 @@
             font-weight: 600;
             margin-bottom: 15px;
             color: #ffffff;
+            text-align: center;
         }
 
         textarea {
@@ -54,34 +51,40 @@
             font-family: 'Courier Prime', monospace;
             resize: none;
             margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         input[type="text"] {
             width: 100%;
             padding: 10px;
-            border: 1px solid #333;
             border-radius: 8px;
+            border: 1px solid #333;
             background-color: #212121;
             color: #e0e0e0;
             margin-top: 10px;
         }
 
         select {
+            width: 100%;
             padding: 10px;
-            border: 1px solid #333;
             border-radius: 8px;
+            border: 1px solid #333;
             background-color: #212121;
             color: #e0e0e0;
             margin-top: 10px;
         }
 
-        /* Interactive button styles */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
         input[type="button"] {
             background: linear-gradient(45deg, #ff6b6b, #f06595);
             color: white;
             border: none;
             padding: 12px 24px;
-            margin: 15px 5px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
@@ -95,6 +98,11 @@
 
         input[type="checkbox"] {
             margin-left: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
         }
 
         small {
@@ -112,7 +120,7 @@
         }
 
         p {
-            margin: 0;
+            margin: 10px 0;
             text-align: center;
         }
     </style>
@@ -120,57 +128,59 @@
 <body>
 
     <div class="quiz-container">
-        <table border="0" cellspacing="0" cellpadding="0">
-            <caption><strong>JavaScript Kit Pop Quiz</strong></caption>
-            
-            <tr>
-                <td>
-                    <textarea name="thequestion" wrap="virtual" readonly></textarea>
-                </td>
-            </tr>
+        <form method="POST" name="instantquiz">
+            <table width="100%" cellspacing="0" cellpadding="0">
+                <caption>JavaScript Kit Pop Quiz</caption>
 
-            <tr align="center">
-                <td>
-                    <p><strong>Solution:</strong></p>
-                    <input type="text" name="thesolution" readonly>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <textarea name="thequestion" readonly></textarea>
+                    </td>
+                </tr>
 
-            <tr align="center">
-                <td>
-                    <p><strong>Your response:</strong></p>
-                    <select name="theresponse" onChange="responses()">
-                        <option value="-----">----</option>
-                        <option value="a">a</option>
-                        <option value="b">b</option>
-                        <option value="c">c</option>
-                        <option value="d">d</option>
-                    </select>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <p><strong>Solution:</strong></p>
+                        <input type="text" name="thesolution" readonly>
+                    </td>
+                </tr>
 
-            <tr align="center">
-                <td>
-                    <input type="button" value="&lt;&lt;Back" onClick="if (whichone > 1) { whichone--; generatequestions(); }">
-                    <input type="button" value="Next&gt;&gt;" onClick="if (whichone <= total) { whichone++; generatequestions(); }">
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <p><strong>Your response:</strong></p>
+                        <select name="theresponse" onChange="responses()">
+                            <option value="-----">----</option>
+                            <option value="a">a</option>
+                            <option value="b">b</option>
+                            <option value="c">c</option>
+                            <option value="d">d</option>
+                        </select>
+                    </td>
+                </tr>
 
-            <tr align="center">
-                <td>
-                    <small>
-                        <a href="#" onClick="whichone = 1; generatequestions(); return false">Start Over</a>
-                        <input type="checkbox" name="cmode" value="ON"> Cheat Mode
-                    </small>
-                </td>
-            </tr>
-            
-            <tr align="center">
-                <td>
-                    <p><small>This free quiz script provided by <a href="http://javascriptkit.com">JavaScript Kit</a></small></p>
-                </td>
-            </tr>
-        </table>
+                <tr>
+                    <td class="button-container">
+                        <input type="button" value="&lt;&lt; Back" onClick="if (whichone > 1) { whichone--; generatequestions(); }">
+                        <input type="button" value="Next &gt;&gt;" onClick="if (whichone <= total) { whichone++; generatequestions(); }">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>
+                            <small>
+                                <a href="#" onClick="whichone = 1; generatequestions(); return false">Start Over</a>
+                                <input type="checkbox" name="cmode" value="ON"> Cheat Mode
+                            </small>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <div class="footer">
+            <small>This free quiz script provided by <a href="http://javascriptkit.com">JavaScript Kit</a></small>
+        </div>
     </div>
 
     <script src="popquiz.js"></script>
