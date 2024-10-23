@@ -1,80 +1,199 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <body>
-        <div align="left">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Kit Pop Quiz</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-            <table border="0" cellspacing="0" cellpadding="0" width="100%">
-              <tr>
-                <td width="50%"><form method="POST" name="instantquiz">
-                  <table border="0" width="100%" cellspacing="0" cellpadding="0">
-                    <caption><strong>JavaScript Kit Pop Quiz</strong></caption>
-                    <tr>
-                      <td width="100%"><div align="center"><center><p><textarea rows="10" name="thequestion"
-                      cols="69" wrap="virtual"></textarea></td>
-                    </tr>
-                    <tr align="center">
-                      <td width="50%"><div align="center"><center><p><strong>Solution: </strong><input
-                      type="text" name="thesolution" size="35"></td>
-                    </tr>
-                    <tr align="center">
-                      <td width="100%"><div align="center"><center><p><strong>Your response:</strong> <select
-                      name="theresponse" size="1" onChange="responses()">
-                        <option value="-----">----</option>
-                        <option value="a">a</option>
-                        <option value="b">b</option>
-                        <option value="c">c</option>
-                        <option value="d">d</option>
-                      </select> <input type="button" value="&lt;&lt;Back" name="B1"
-                      onClick="if (whichone&gt;1){whichone--;generatequestions()}"> <input type="button"
-                      value="Next&gt;&gt;" name="B2"
-                      onClick="if (whichone&lt;=total){whichone++;generatequestions()}"><br>
-                      <small><a href="#" onClick="whichone=1;generatequestions();return false">Start Over</a> </small><input
-                      type="checkbox" name="cmode" value="ON"><small>Cheat Mode</small><p align="center"><font face="arial" size="-2">This free quiz script provided by</font><br> <font face="arial, helvetica" size="-2"><a href="http://javascriptkit.com">JavaScript Kit</a></font></p></td>
-                    </tr>
-                  </table>
-                </form>
-                </td>
-              </tr>
-            </table>
-            
-            </div>
-            
-            <script src="popquiz.js">
-            
-            /*
-            Instant-grading multiple choice quiz-
-            By JavaScript Kit (www.javascriptkit.com)
-            Over 200+ free scripts here!
-            */
-            
-            </script>
-            <script language="JavaScript1.1">
-            var whichone=1
-            var tempmn=document.instantquiz.thequestion
-            function generatequestions(){
-            document.instantquiz.theresponse.selectedIndex=0
-            if (!document.instantquiz.cmode.checked||whichone>=total+1||whichone<=0)
-            document.instantquiz.thesolution.value=''
-            if (whichone>=total+1)
-            tempmn.value="End of quiz"
-            else{
-            tempmn.value=whichone+")"+question[whichone]+"\n\n"+"a)"+eval('choice'+whichone+'[1]')+"\n"+"b)"+eval('choice'+whichone+'[2]')+"\n"+"c)"+eval('choice'+whichone+'[3]')+"\n"+"d)"+eval('choice'+whichone+'[4]')
-            if (document.instantquiz.cmode.checked)
-            document.instantquiz.thesolution.value=solution[whichone]
-            }
-            }
-            
-            function responses(){
-            var temp2=document.instantquiz.theresponse
-            var temp3=temp2.options[temp2.selectedIndex].text
-            if (temp3!=solution[whichone]&&temp2.selectedIndex!=0)
-            document.instantquiz.thesolution.value="Sorry, the correct answer is "+solution[whichone]
-            else if(temp2.selectedIndex!=0)
-            document.instantquiz.thesolution.value=compliments[Math.round(Math.random()*compliments.length-1)]
-            }
-            
-            generatequestions()
-            </script>
-    </body>
+        /* Main container styling */
+        .quiz-container {
+            background-color: #ffffff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        caption {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            background-color: #f9fafb;
+            resize: none;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+        select {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+        input[type="button"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="checkbox"] {
+            margin-left: 10px;
+        }
+
+        small {
+            color: #666;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .center-text {
+            text-align: center;
+        }
+
+        footer {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #aaa;
+            text-align: center;
+        }
+    </style>
 </head>
+<body>
+
+    <div class="quiz-container">
+        <form method="POST" name="instantquiz">
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                <caption>JavaScript Kit Pop Quiz</caption>
+
+                <tr>
+                    <td>
+                        <textarea name="thequestion" cols="69" wrap="virtual" readonly></textarea>
+                    </td>
+                </tr>
+
+                <tr class="center-text">
+                    <td>
+                        <p><strong>Solution:</strong> 
+                        <input type="text" name="thesolution" size="35" readonly></p>
+                    </td>
+                </tr>
+
+                <tr class="center-text">
+                    <td>
+                        <p><strong>Your response:</strong> 
+                        <select name="theresponse" size="1" onChange="responses()">
+                            <option value="-----">----</option>
+                            <option value="a">a</option>
+                            <option value="b">b</option>
+                            <option value="c">c</option>
+                            <option value="d">d</option>
+                        </select>
+                        <input type="button" value="&lt;&lt;Back" name="B1"
+                            onClick="if (whichone > 1) { whichone--; generatequestions(); }">
+                        <input type="button" value="Next&gt;&gt;" name="B2"
+                            onClick="if (whichone <= total) { whichone++; generatequestions(); }"></p>
+                        
+                        <small>
+                            <a href="#" onClick="whichone = 1; generatequestions(); return false">Start Over</a>
+                        </small>
+                        <input type="checkbox" name="cmode" value="ON"><small>Cheat Mode</small>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <footer>
+            <p>This free quiz script provided by <a href="http://javascriptkit.com">JavaScript Kit</a></p>
+        </footer>
+    </div>
+
+    <script src="popquiz.js"></script>
+    <script>
+        var whichone = 1;
+        var tempmn = document.instantquiz.thequestion;
+
+        function generatequestions() {
+            document.instantquiz.theresponse.selectedIndex = 0;
+            if (!document.instantquiz.cmode.checked || whichone >= total + 1 || whichone <= 0) {
+                document.instantquiz.thesolution.value = '';
+            }
+            if (whichone >= total + 1) {
+                tempmn.value = "End of quiz";
+            } else {
+                tempmn.value = whichone + ")" + question[whichone] + "\n\n" +
+                    "a)" + eval('choice' + whichone + '[1]') + "\n" +
+                    "b)" + eval('choice' + whichone + '[2]') + "\n" +
+                    "c)" + eval('choice' + whichone + '[3]') + "\n" +
+                    "d)" + eval('choice' + whichone + '[4]');
+                if (document.instantquiz.cmode.checked) {
+                    document.instantquiz.thesolution.value = solution[whichone];
+                }
+            }
+        }
+
+        function responses() {
+            var temp2 = document.instantquiz.theresponse;
+            var temp3 = temp2.options[temp2.selectedIndex].text;
+            if (temp3 != solution[whichone] && temp2.selectedIndex != 0) {
+                document.instantquiz.thesolution.value = "Sorry, the correct answer is " + solution[whichone];
+            } else if (temp2.selectedIndex != 0) {
+                document.instantquiz.thesolution.value =
+                    compliments[Math.round(Math.random() * compliments.length - 1)];
+            }
+        }
+
+        generatequestions();
+    </script>
+
+</body>
 </html>
