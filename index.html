@@ -71,12 +71,18 @@
             margin-top: 15px;
         }
 
+        /* Button Styles */
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+
         input[type="button"] {
             background-color: #4caf50;
             color: white;
             border: none;
             padding: 12px 24px;
-            margin: 15px 5px;
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s ease;
@@ -154,11 +160,13 @@
                 </tr>
 
                 <tr>
-                    <td class="center-content">
-                        <input type="button" value="&lt;&lt; Back" name="B1"
-                            onClick="if (whichone > 1) { whichone--; generatequestions(); }">
-                        <input type="button" value="Next &gt;&gt;" name="B2"
-                            onClick="if (whichone <= total) { whichone++; generatequestions(); }">
+                    <td>
+                        <div class="button-container">
+                            <input type="button" value="&lt;&lt; Back" name="B1"
+                                onClick="if (whichone > 1) { whichone--; generatequestions(); }">
+                            <input type="button" value="Next &gt;&gt;" name="B2"
+                                onClick="if (whichone <= total) { whichone++; generatequestions(); }">
+                        </div>
                     </td>
                 </tr>
 
