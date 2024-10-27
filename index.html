@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Office Pop Quiz</title>
+    
 
 
 
@@ -36,7 +37,7 @@
             border: 2px solid #d4d4d4;
 
             position: absolute;
-            top: 50px;
+            top: 10px;
             left: 40px;
         }
 
@@ -87,9 +88,11 @@
 
         /* Button Styles */
         .button-container {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 15px;
+          display: flex;
+          justify-content: center; /* Center the buttons horizontally */
+          align-items: center; /* Align the buttons vertically */
+          gap: 20px; /* Add space between the buttons */
+          margin-top: 15px;
             
         }
 
@@ -152,8 +155,9 @@
     <div class="quiz-container">
         <form method="POST" name="instantquiz">
             <table border="0" width="100%" cellspacing="0" cellpadding="0">
-                <caption>The Office Pop Quiz</caption>
-
+                <div>
+                  <h2>The Office Pop Quiz</h2>
+                  <h4>Who said this?</h4>
                 <tr>
                     <td class="center-content">
                         <textarea name="thequestion" cols="69" wrap="virtual" readonly></textarea>
