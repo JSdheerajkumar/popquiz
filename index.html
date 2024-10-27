@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Kit Pop Quiz</title>
+    <title>The Office Pop Quiz</title>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Courier+Prime&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* General Styles for Dark Mode */
+        /* General Styles */
         body {
             margin: 0;
             padding: 0;
-            background-color: #121212; /* Dark background */
-            font-family: 'Poppins', sans-serif;
-            color: #e0e0e0;
+            background-color: #f4f4f4; /* Neutral beige/grey tone */
+            font-family: 'Helvetica', sans-serif;
+            color: #333; /* Dark text */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,31 +24,32 @@
 
         /* Quiz container styling */
         .quiz-container {
-            background-color: #1e1e1e; /* Darker card */
-            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
-            border-radius: 16px;
+            background-color: #fffbea; /* Light yellow */
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
             max-width: 600px;
             width: 100%;
             padding: 30px;
             text-align: center;
+            border: 2px solid #d4d4d4;
         }
 
         caption {
             font-size: 28px;
-            font-weight: 600;
-            color: #ffffff;
+            font-weight: 700;
+            color: #2e2e2e;
             margin-bottom: 20px;
+            font-family: 'Helvetica', sans-serif;
         }
 
         textarea {
             width: 100%;
             height: 120px;
             padding: 10px;
-            border: 1px solid #333;
+            border: 1px solid #ddd;
             border-radius: 8px;
-            background-color: #212121;
-            color: #f5f5f5;
-            font-family: 'Courier Prime', monospace;
+            background-color: #f9f9f9;
+            color: #333;
             resize: none;
         }
 
@@ -56,18 +57,18 @@
             width: 80%;
             padding: 10px;
             border-radius: 8px;
-            border: 1px solid #333;
-            background-color: #212121;
-            color: #e0e0e0;
+            border: 1px solid #ddd;
+            background-color: #fafafa;
+            color: #333;
             margin-top: 15px;
         }
 
         select {
             padding: 10px;
             border-radius: 8px;
-            border: 1px solid #333;
-            background-color: #212121;
-            color: #e0e0e0;
+            border: 1px solid #ddd;
+            background-color: #fafafa;
+            color: #333;
             margin-top: 15px;
         }
 
@@ -79,23 +80,24 @@
         }
 
         input[type="button"] {
-            background-color: #4caf50;
-            color: white;
+            background-color: #ffd700; /* Office-themed yellow */
+            color: black;
             border: none;
             padding: 12px 24px;
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            font-weight: 600;
+            font-weight: 700;
+            font-family: 'Helvetica', sans-serif;
         }
 
         input[type="button"]:hover {
-            background-color: #388e3c;
+            background-color: #f1c40f;
         }
 
         small {
             display: block;
-            color: #aaa;
+            color: #888;
             margin-top: 10px;
         }
 
@@ -104,7 +106,7 @@
         }
 
         a {
-            color: #4caf50;
+            color: #ff6347;
             text-decoration: none;
             font-weight: 500;
         }
@@ -116,7 +118,7 @@
         footer {
             margin-top: 20px;
             font-size: 12px;
-            color: #888;
+            color: #666;
         }
 
         .center-content {
@@ -131,7 +133,7 @@
     <div class="quiz-container">
         <form method="POST" name="instantquiz">
             <table border="0" width="100%" cellspacing="0" cellpadding="0">
-                <caption>JavaScript Kit Pop Quiz</caption>
+                <caption>The Office Pop Quiz</caption>
 
                 <tr>
                     <td class="center-content">
@@ -181,10 +183,6 @@
                 </tr>
             </table>
         </form>
-
-        <footer>
-            <p>This free quiz script provided by <a href="http://javascriptkit.com">JavaScript Kit</a></p>
-        </footer>
     </div>
 
     <script src="popquiz.js"></script>
